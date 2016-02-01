@@ -1,0 +1,30 @@
+{
+  "name": "getting-started-with-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --use-strict index.js"
+  },
+  "author": "Vladimir Ponomarev",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "history": "^1.17.0",
+    "material-ui": "^0.14.2",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-router": "^1.0.3",
+    "react-tap-event-plugin": "^0.2.1",
+    "validator": "^4.5.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "webpack": "^1.12.12"
+  }
+}

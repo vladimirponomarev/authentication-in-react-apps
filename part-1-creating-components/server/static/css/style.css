@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+#container {
+  margin: 25px auto;
+  width: 500px;
+  text-align: center;
+}
+
+.card-heading {
+  padding: 16px;
+}
+
+.field-line, .button-line {
+  padding: 16px;
+}
+
+.error-message {
+  padding: 0 16px;
+  color: tomato;
+}
+
+.success-message {
+  padding: 0 16px;
+  color: green;
+}
