@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import {Card, CardTitle, CardText, RaisedButton, TextField} from 'material-ui';
 
 
-class SignUpCard extends React.Component {
+class LoginForm extends React.Component {
 
   /**
    * Class constructor.
@@ -28,13 +28,13 @@ class SignUpCard extends React.Component {
     let self = this;
 
     // create a string for an HTTP body message
-    let user = 'name=' + encodeURIComponent(this.refs.name.getValue())
-             + '&email=' + encodeURIComponent(this.refs.email.getValue())
+    let user = 'email=' + encodeURIComponent(this.refs.email.getValue())
              + '&password=' + encodeURIComponent(this.refs.password.getValue());
+
 
     // create an AJAX request
     let xhr = new XMLHttpRequest();
-    xhr.open('post', '/auth/signup');
+    xhr.open('post', '/auth/login');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.onload = function() {
@@ -69,17 +69,13 @@ class SignUpCard extends React.Component {
    */
   render() {
     return (
-      <Card>
+      <Card className="container">
         <form action="/" onSubmit={this.processForm.bind(this)}>
-          <h2 className="card-heading">Sign Up</h2>
+          <h2 className="card-heading">Login</h2>
 
-          <CardTitle title="Sign Up with Email" />
+          <CardTitle title="Login with Email" />
 
           {this.state.errorMessage && <p className="error-message">{this.state.errorMessage}</p>}
-
-          <div className="field-line">
-            <TextField ref="name" floatingLabelText="Name" errorText={this.state.errors.name} />
-          </div>
 
           <div className="field-line">
             <TextField ref="email" floatingLabelText="Email" errorText={this.state.errors.email} />
@@ -90,10 +86,10 @@ class SignUpCard extends React.Component {
           </div>
 
           <div className="button-line">
-            <RaisedButton type="submit" label="Create New Account" primary={true} />
+            <RaisedButton type="submit" label="Log in" primary={true} />
           </div>
 
-          <CardText>Already have an account? <Link to={`/login`}>Log in</Link></CardText>
+          <CardText>Don't have an account? <Link to={`/signup`}>Create one</Link></CardText>
         </form>
       </Card>
     );
@@ -101,4 +97,4 @@ class SignUpCard extends React.Component {
 
 }
 
-export default SignUpCard;
+export default LoginForm;

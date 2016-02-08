@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {Router, Route} from 'react-router';
-import Dashboard from './components/Dashboard.jsx';
-import SignUpCard from './components/SignUpCard.jsx';
-import LoginCard from './components/LoginCard.jsx';
+import Home from './components/Home.jsx';
+import SignUpForm from './components/SignUpForm.jsx';
+import LoginForm from './components/LoginForm.jsx';
 
 ReactDom.render((
   <Router>
-    <Route path="/" component={Dashboard} />
-    <Route path="/signup" component={SignUpCard} />
-    <Route path="/login" component={LoginCard} />
+    <Route path="/" component={Home} />
+    <Route path="/signup" component={SignUpForm} />
+    <Route path="/login" component={LoginForm} />
   </Router>
-), document.getElementById('container'));
+), document.getElementById('react-app'));

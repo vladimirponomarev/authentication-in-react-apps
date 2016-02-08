@@ -2,10 +2,15 @@ body {
   margin: 0;
 }
 
-#container {
-  margin: 25px auto;
-  width: 500px;
-  text-align: center;
+a {
+  color: #ff4081;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.4s;
+}
+
+a:hover {
+  color: #ff79a7;
 }
 
 .card-heading {
@@ -14,6 +19,19 @@ body {
 
 .field-line, .button-line {
   padding: 16px;
+}
+
+.container {
+  margin: 0 auto;
+  text-align: center;
+  width: 700px;
+}
+
+nav {
+   margin-bottom: 16px;
+}
+nav a {
+  margin: 0 8px;
 }
 
 .error-message {
