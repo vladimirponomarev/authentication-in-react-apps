@@ -22,7 +22,7 @@ const routes = {
     {
       path: '/signup',
       component: SignUpForm
-    },
+    }
 
   ]
 };

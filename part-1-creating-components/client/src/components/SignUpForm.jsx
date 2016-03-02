@@ -24,6 +24,7 @@ class SignUpForm extends React.Component {
    * @param {object} event - the JavaScript event object
    */
   processForm(event) {
+    // prevent default action. in this case, action is the form submission event
     event.preventDefault();
     let self = this;
 
