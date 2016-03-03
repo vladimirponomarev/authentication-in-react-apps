@@ -1,0 +1,4 @@
+{
+  "db": "mongodb://localhost/react_app",
+  "jwtSecret": "a secret phrase!!"
+}
