@@ -1,60 +1,20 @@
-import React from 'react';
-import {Link} from 'react-router';
-import {Card, CardTitle, CardText} from 'material-ui';
-import Auth from '../modules/Auth';
+import React, { PropTypes } from 'react';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 
-class Dashboard extends React.Component {
+const Dashboard = ({ secretData }) => (
+  <Card className="container">
+    <CardTitle
+      title="Dashboard"
+      subtitle="You should get access to this page only after authentication."
+    />
 
-  /**
-   * Class constructor.
-   */
-  constructor() {
-    super();
+    {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
+  </Card>
+);
 
-    this.state = {
-      secretData: ''
-    };
-  }
-
-  /**
-   * This method will be executed after initial rendering.
-   */
-  componentDidMount() {
-    let self = this;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/dashboard');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // set the authorization HTTP header
-    xhr.setRequestHeader('Authorization', 'bearer ' + Auth.getToken());
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-      let state = {};
-
-      if (this.status == 200) {
-        state.secretData = this.response.message;
-        self.setState(state);
-     }
-
-    };
-    xhr.send();
-  }
-
-  /**
-   * Render the component.
-   */
-  render() {
-    return (
-      <Card className="container">
-        <CardTitle title="Dashboard" subtitle="You should get access to this page only after authentication." />
-
-        {this.state.secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{this.state.secretData}</CardText>}
-
-      </Card>
-    );
-  }
-
-}
+Dashboard.propTypes = {
+  secretData: PropTypes.string.isRequired
+};
 
 export default Dashboard;

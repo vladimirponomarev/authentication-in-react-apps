@@ -1,9 +1,9 @@
-import Base from '../components/Base.jsx';
-import Home from '../components/Home.jsx';
-import Dashboard from '../components/Dashboard.jsx';
-import LoginForm from '../components/LoginForm.jsx';
-import SignUpForm from '../components/SignUpForm.jsx';
-import Auth from '../modules/Auth';
+import Base from './components/Base.jsx';
+import HomePage from './components/HomePage.jsx';
+import DashboardPage from './containers/DashboardPage.jsx';
+import LoginPage from './containers/LoginPage.jsx';
+import SignUpPage from './containers/SignUpPage.jsx';
+import Auth from './modules/Auth';
 
 
 const routes = {
@@ -15,30 +15,30 @@ const routes = {
       path: '/',
       getComponent: (location, callback) => {
         if (Auth.isUserAuthenticated()) {
-          callback(null, Dashboard);
+          callback(null, DashboardPage);
         } else {
-          callback(null, Home);
+          callback(null, HomePage);
         }
       }
     },
 
     {
       path: '/login',
-      component: LoginForm
+      component: LoginPage
     },
 
     {
       path: '/signup',
-      component: SignUpForm
+      component: SignUpPage
     },
 
     {
       path: '/logout',
-      onEnter: (nextState, replaceState) => {
+      onEnter: (nextState, replace) => {
         Auth.deauthenticateUser();
 
         // change the current URL to /
-        replaceState(null, '/');
+        replace('/');
       }
     }
 

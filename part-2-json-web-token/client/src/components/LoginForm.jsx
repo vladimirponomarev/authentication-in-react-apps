@@ -1,114 +1,60 @@
-import React from 'react';
-import {Link} from 'react-router';
-import {Card, CardTitle, CardText, RaisedButton, TextField} from 'material-ui';
-import Auth from '../modules/Auth';
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+import { Card, CardText } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 
-class LoginForm extends React.Component {
+const LoginForm = ({
+  onSubmit,
+  onChange,
+  errors,
+  successMessage,
+  user
+}) => (
+  <Card className="container">
+    <form action="/" onSubmit={onSubmit}>
+      <h2 className="card-heading">Login</h2>
 
-  /**
-   * Class constructor.
-   */
-  constructor() {
-    super();
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errors.summary && <p className="error-message">{errors.summary}</p>}
 
-    let successMessage = localStorage.getItem('successMessage');
-    if (successMessage) {
-      localStorage.removeItem('successMessage');
-    }
+      <div className="field-line">
+        <TextField
+          floatingLabelText="Email"
+          name="email"
+          errorText={errors.email}
+          onChange={onChange}
+          value={user.email}
+        />
+      </div>
 
-    // set the initial component state
-    this.state = {
-      errorMessage: '',
-      successMessage: successMessage,
-      errors: {}
-    };
-  }
+      <div className="field-line">
+        <TextField
+          floatingLabelText="Password"
+          type="password"
+          name="password"
+          onChange={onChange}
+          errorText={errors.password}
+          value={user.password}
+        />
+      </div>
 
-  /**
-   * Process the form.
-   *
-   * @param {object} event - the JavaScript event object
-   */
-  processForm(event) {
-    // prevent default action. in this case, action is the form submit event
-    event.preventDefault();
+      <div className="button-line">
+        <RaisedButton type="submit" label="Log in" primary />
+      </div>
 
-    let self = this;
-    let history = this.props.history;
+      <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
+    </form>
+  </Card>
+);
 
-    // create a string for an HTTP body message
-    let user = 'email=' + encodeURIComponent(this.refs.email.getValue())
-             + '&password=' + encodeURIComponent(this.refs.password.getValue());
-
-
-    // create an AJAX request
-    let xhr = new XMLHttpRequest();
-    xhr.open('post', '/auth/login');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-      let state = {};
-
-      if (this.status == 200) {
-        // success
-
-        state.errorMessage = '';
-        state.errors = {};
-
-        // change the component state
-        self.setState(state);
-
-        // save the token
-        Auth.authenticateUser(this.response.token);
-
-        // change the current URL to /
-        history.replaceState(null, '/');
-      } else {
-        // failure
-
-        state.errorMessage = this.response.message;
-        state.errors = this.response.errors ? this.response.errors : {};
-
-        // change the component state
-        self.setState(state);
-
-      }
-    };
-    xhr.send(user);
-  }
-
-
-  /**
-   * Render the component.
-   */
-  render() {
-    return (
-      <Card className="container">
-        <form action="/" onSubmit={this.processForm.bind(this)}>
-          <h2 className="card-heading">Login</h2>
-
-          {this.state.successMessage && <p className="success-message">{this.state.successMessage}</p>}
-          {this.state.errorMessage && <p className="error-message">{this.state.errorMessage}</p>}
-
-          <div className="field-line">
-            <TextField ref="email" floatingLabelText="Email" errorText={this.state.errors.email} />
-          </div>
-
-          <div className="field-line">
-            <TextField ref="password" floatingLabelText="Password" type="password" errorText={this.state.errors.password} />
-          </div>
-
-          <div className="button-line">
-            <RaisedButton type="submit" label="Log in" primary={true} />
-          </div>
-
-          <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link></CardText>
-        </form>
-      </Card>
-    );
-  }
-
-}
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  successMessage: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired
+};
 
 export default LoginForm;

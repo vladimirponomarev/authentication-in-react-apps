@@ -4,14 +4,14 @@ body {
 }
 
 a {
-  color: #ff4081;
+  color: #00bcd4;
   font-weight: bold;
   text-decoration: none;
   transition: color 0.4s;
 }
 
 a:hover {
-  color: #ff79a7;
+  color: #1976d2;
 }
 
 .text-center {
