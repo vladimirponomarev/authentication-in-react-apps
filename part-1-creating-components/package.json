@@ -1,7 +1,7 @@
 {
   "name": "authentication-in-react-apps",
   "version": "1.0.0",
-  "description": "A tutorial on creating React components",
+  "description": "Authentication in React Applications, Part 1: Creating Components",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --use-strict index.js"
