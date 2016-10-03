@@ -2,7 +2,6 @@ node_modules
 .DS_Store
 *.swp
 .idea
-.eslintrc.json
 part-1-creating-components/client/dist/
 part-1-creating-components/node_modules/
 part-2-json-web-token/client/dist/
