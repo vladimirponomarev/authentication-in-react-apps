@@ -7,8 +7,8 @@ class LoginPage extends React.Component {
   /**
    * Class constructor.
    */
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     // set the initial component state
     this.state = {
@@ -98,9 +98,4 @@ class LoginPage extends React.Component {
 
 }
 
-LoginPage.contextTypes = {
-  router: PropTypes.object.isRequired
-};
-
 export default LoginPage;
-

@@ -8,8 +8,8 @@ class DashboardPage extends React.Component {
   /**
    * Class constructor.
    */
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       secretData: ''

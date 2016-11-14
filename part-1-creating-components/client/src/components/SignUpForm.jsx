@@ -10,7 +10,7 @@ const SignUpForm = ({
   onChange,
   errors,
   user,
-  }) => (
+}) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign Up</h2>
@@ -65,4 +65,3 @@ SignUpForm.propTypes = {
 };
 
 export default SignUpForm;
-
