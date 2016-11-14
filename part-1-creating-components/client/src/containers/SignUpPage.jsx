@@ -48,9 +48,6 @@ class SignUpPage extends React.Component {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
 
-    // prevent default action. in this case, action is the form submission event
-    event.preventDefault();
-
     // create a string for an HTTP body message
     const name = encodeURIComponent(this.state.user.name);
     const email = encodeURIComponent(this.state.user.email);
